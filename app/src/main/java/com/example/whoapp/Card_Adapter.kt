@@ -1,5 +1,6 @@
 package com.example.mymail
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.view.*
 import android.widget.ImageView
@@ -12,7 +13,7 @@ import com.example.whoapp.R
 
 class Card_Adapter(var items: ArrayList<Card>) :
     RecyclerView.Adapter<Card_Adapter.TarjViewHolder>(){
-
+    lateinit var onClick: (View) -> Unit
 
     init {
         this.items = items
@@ -33,14 +34,19 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
         }
 
-        fun bindTarjeta(t: Card) = with(itemView) {
-//            imagen.setImageResource(t.imagen)
+        fun bindTarjeta(t: Card,  onClick: (View) -> Unit) = with(itemView) {
             titulo.setText(t.titulo)
-//            val fotouser = itemView.findViewById<ImageView>(t.imagen)
+
             val bm = BitmapFactory.decodeResource(itemView.resources, t.imagen)
             val drawable = RoundedBitmapDrawableFactory.create(itemView.resources, bm)
             drawable.isCircular = true
             imagen.setImageDrawable(drawable)
+
+            setOnClickListener{
+                onClick(itemView)
+            }
+
+
 
         }
 
@@ -59,7 +65,7 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
     override fun onBindViewHolder(viewHolder: TarjViewHolder, pos: Int) {
         val item = items.get(pos)
-        viewHolder.bindTarjeta(item)
+        viewHolder.bindTarjeta(item, onClick)
 
 
 

@@ -1,3 +1,3 @@
 package com.example.mymail
 
-data class Card(val imagen: Int, val titulo: String)
+data class Card(val imagen: Int, val titulo: Int)
