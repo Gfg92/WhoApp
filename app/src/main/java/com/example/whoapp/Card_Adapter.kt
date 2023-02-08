@@ -1,14 +1,17 @@
 package com.example.mymail
 
+import android.R.attr.data
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whoapp.PictureActivity
 import com.example.whoapp.R
+
 
 class Card_Adapter(var items: ArrayList<Card>) :
     RecyclerView.Adapter<Card_Adapter.TarjViewHolder>(){
@@ -37,7 +40,9 @@ class Card_Adapter(var items: ArrayList<Card>) :
             // Al clicar sobre el título de la targeta, es decir el nombre, te lleva a otra actividad
             titulo.setOnClickListener {
                 val intent = Intent(itemView.context, PictureActivity::class.java)
+                intent.putExtra("hola", titulo.text)
                 itemView.context.startActivity(intent)
+
             }
 
 
@@ -60,6 +65,9 @@ class Card_Adapter(var items: ArrayList<Card>) :
     override fun onBindViewHolder(viewHolder: TarjViewHolder, pos: Int) {
         val item = items.get(pos)
         viewHolder.bindTarjeta(item)
+
+
+
     }
 
     override fun getItemCount(): Int {

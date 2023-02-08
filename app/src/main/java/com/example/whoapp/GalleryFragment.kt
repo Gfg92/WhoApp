@@ -1,5 +1,6 @@
 package com.example.menucontabs
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import com.example.mymail.Card
 import com.example.mymail.Card_Adapter
+import com.example.whoapp.PictureActivity
 import com.example.whoapp.R
 
 class GalleryFragment : Fragment() {
