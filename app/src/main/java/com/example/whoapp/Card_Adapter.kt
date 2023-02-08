@@ -1,28 +1,23 @@
 package com.example.mymail
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.recyclerview.widget.RecyclerView
+import com.example.whoapp.PictureActivity
 import com.example.whoapp.R
 
 class Card_Adapter(var items: ArrayList<Card>) :
     RecyclerView.Adapter<Card_Adapter.TarjViewHolder>(){
     lateinit var onClick: (View) -> Unit
 
-    init {
-        this.items = items
-    }
-
     class TarjViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener  {
 
         private var imagen: ImageView
         private var titulo: TextView
-
-
-
 
         init {
             imagen = itemView.findViewById(R.id.imagen_imageView)
@@ -31,16 +26,18 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
         }
 
-        fun bindTarjeta(t: Card,  onClick: (View) -> Unit) = with(itemView) {
+        fun bindTarjeta(t: Card) = with(itemView) {
             titulo.setText(t.titulo)
-
+            // Hacer redonda la imagen
             val bm = BitmapFactory.decodeResource(itemView.resources, t.imagen)
             val drawable = RoundedBitmapDrawableFactory.create(itemView.resources, bm)
             drawable.isCircular = true
             imagen.setImageDrawable(drawable)
 
-            setOnClickListener{
-                onClick(itemView)
+            // Al clicar sobre el título de la targeta, es decir el nombre, te lleva a otra actividad
+            titulo.setOnClickListener {
+                val intent = Intent(itemView.context, PictureActivity::class.java)
+                itemView.context.startActivity(intent)
             }
 
 
@@ -62,11 +59,7 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
     override fun onBindViewHolder(viewHolder: TarjViewHolder, pos: Int) {
         val item = items.get(pos)
-        viewHolder.bindTarjeta(item, onClick)
-
-
-
-
+        viewHolder.bindTarjeta(item)
     }
 
     override fun getItemCount(): Int {

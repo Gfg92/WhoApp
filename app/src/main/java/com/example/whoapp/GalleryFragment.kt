@@ -48,6 +48,7 @@ class GalleryFragment : Fragment() {
         recView.itemAnimator = DefaultItemAnimator()
 
         adaptador.onClick = {
+
         }
 
 
