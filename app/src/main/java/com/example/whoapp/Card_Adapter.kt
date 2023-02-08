@@ -1,13 +1,10 @@
 package com.example.mymail
 
-import android.content.Intent
 import android.graphics.BitmapFactory
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whoapp.R
 
@@ -29,7 +26,7 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
         init {
             imagen = itemView.findViewById(R.id.imagen_imageView)
-            titulo = itemView.findViewById(R.id.textView)
+            titulo = itemView.findViewById(R.id.textView_card)
             itemView.setOnCreateContextMenuListener(this)
 
         }
