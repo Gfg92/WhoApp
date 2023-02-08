@@ -6,21 +6,24 @@ import android.graphics.BitmapFactory
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.example.whoapp.PictureActivity
 import com.example.whoapp.R
 
 
 class Card_Adapter(var items: ArrayList<Card>) :
-    RecyclerView.Adapter<Card_Adapter.TarjViewHolder>(){
+    RecyclerView.Adapter<Card_Adapter.TarjViewHolder>() {
     lateinit var onClick: (View) -> Unit
 
-    class TarjViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnCreateContextMenuListener  {
+    class TarjViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnCreateContextMenuListener {
 
-        private var imagen: ImageView
-        private var titulo: TextView
+        var imagen: ImageView
+        var titulo: TextView
 
         init {
             imagen = itemView.findViewById(R.id.imagen_imageView)
@@ -29,7 +32,9 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
         }
 
-        fun bindTarjeta(t: Card) = with(itemView) {
+        fun bindTarjeta(t: Card, onClick:(View) -> Unit) = with(itemView) {
+            setOnClickListener{ onClick(itemView)}
+
             titulo.setText(t.titulo)
             // Hacer redonda la imagen
             val bm = BitmapFactory.decodeResource(itemView.resources, t.imagen)
@@ -37,20 +42,14 @@ class Card_Adapter(var items: ArrayList<Card>) :
             drawable.isCircular = true
             imagen.setImageDrawable(drawable)
 
-            // Al clicar sobre el título de la targeta, es decir el nombre, te lleva a otra actividad
-            titulo.setOnClickListener {
-                val intent = Intent(itemView.context, PictureActivity::class.java)
-                intent.putExtra("titulo", titulo.text)
-                intent.putExtra("image", t.imagen)
-                itemView.context.startActivity(intent)
-
-            }
-
-
 
         }
 
-        override fun onCreateContextMenu(contextMenu: ContextMenu, view: View, contextMenuInfo: ContextMenu.ContextMenuInfo?) {
+        override fun onCreateContextMenu(
+            contextMenu: ContextMenu,
+            view: View,
+            contextMenuInfo: ContextMenu.ContextMenuInfo?
+        ) {
             contextMenu.add(0, 0, adapterPosition, "Editar")     //groupId, itemId, order, title
             contextMenu.add(0, 1, adapterPosition, "Eliminar")
             contextMenu.add(0, 2, adapterPosition, "Compartir")
@@ -65,8 +64,7 @@ class Card_Adapter(var items: ArrayList<Card>) :
 
     override fun onBindViewHolder(viewHolder: TarjViewHolder, pos: Int) {
         val item = items.get(pos)
-        viewHolder.bindTarjeta(item)
-
+        viewHolder.bindTarjeta(item, onClick)
 
 
     }

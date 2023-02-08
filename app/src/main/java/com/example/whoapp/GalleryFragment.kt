@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -50,6 +51,13 @@ class GalleryFragment : Fragment() {
         recView.itemAnimator = DefaultItemAnimator()
 
         adaptador.onClick = {
+            // Al clicar sobre el título de la targeta, es decir el nombre, te lleva a otra actividad
+
+            val intent = Intent(activity, PictureActivity::class.java)
+            intent.putExtra("titulo", items[recView.getChildAdapterPosition(it)].titulo)
+            intent.putExtra("image", items[recView.getChildAdapterPosition(it)].imagen)
+            startActivity(intent)
+
 
         }
 

@@ -12,13 +12,13 @@ class PictureActivity : AppCompatActivity() {
         setContentView(R.layout.activity_picture)
 
         val bundle = intent.extras
-        val idTitulo = bundle?.getString("titulo")
+        val idTitulo = bundle?.getInt("titulo")
         val textview : TextView = findViewById(R.id.textView3)
-        textview.text = idTitulo
+        textview.text = getString(idTitulo!!)
 
-        val idImagen = bundle?.getInt("image")
+        val idImagen = bundle.getInt("image")
         val imageFilterView: ImageFilterView = findViewById(R.id.imageFilterView)
-        imageFilterView.setImageResource(idImagen!!)
+        imageFilterView.setImageResource(idImagen)
 
 
 
