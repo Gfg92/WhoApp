@@ -40,7 +40,8 @@ class Card_Adapter(var items: ArrayList<Card>) :
             // Al clicar sobre el título de la targeta, es decir el nombre, te lleva a otra actividad
             titulo.setOnClickListener {
                 val intent = Intent(itemView.context, PictureActivity::class.java)
-                intent.putExtra("hola", titulo.text)
+                intent.putExtra("titulo", titulo.text)
+                intent.putExtra("image", t.imagen)
                 itemView.context.startActivity(intent)
 
             }
