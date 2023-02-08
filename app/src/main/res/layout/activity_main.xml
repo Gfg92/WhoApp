@@ -50,8 +50,7 @@
         android:name="com.example.menucontabs.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph">
+        app:defaultNavHost="true">
 
     </androidx.fragment.app.FragmentContainerView>
     <androidx.core.widget.NestedScrollView

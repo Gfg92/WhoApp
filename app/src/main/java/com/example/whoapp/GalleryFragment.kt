@@ -48,16 +48,6 @@ class GalleryFragment : Fragment() {
         recView.itemAnimator = DefaultItemAnimator()
 
         adaptador.onClick = {
-            val t = items[recView.getChildAdapterPosition(it)]
-            val idtext: TextView = recView.findViewById(R.id.textView)
-            val bundle = bundleOf("NOM" to getString(t.titulo))
-            val extras = FragmentNavigatorExtras(idtext to "trantext")
-            findNavController().navigate(
-                R.id.action_galleryFragment_to_pictureFragment,
-                bundle,
-                null,
-                extras
-            )
         }
 
 

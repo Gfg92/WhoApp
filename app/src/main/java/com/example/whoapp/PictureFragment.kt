@@ -33,8 +33,7 @@ class PictureFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textView = view.findViewById<TextView>(R.id.textView2)
-        textView.text = arguments?.getString("NOM")
+
 
 
     }
